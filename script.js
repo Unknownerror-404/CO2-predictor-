@@ -127,13 +127,3 @@ function startCarousel(year) {
     document.getElementById("carousel-container").style.display = "block";
     document.getElementById("state-output-container").style.display = "none";
 }
-
-// Calculate future CO2 based on some logic (for example, linear growth)
-function calculateFutureCO2(state, year) {
-    const stateData = data[state];
-    const futureCO2 = stateData.co2[0] * Math.pow(1.02, year - 2025); // Example future calculation
-
-    if (stateData) {
-        alert(`Future CO2 for ${state} in ${year}: ${futureCO2.toFixed(2)}%`);
-    }
-}
