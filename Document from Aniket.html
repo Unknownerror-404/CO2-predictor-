@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CO2 Emission Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Form Section -->
+        <div class="form-card">
+            <h1>CO<sub>2</sub> Emission Tracker</h1>
+            <form>
+                <!-- Year Input -->
+                <label for="year-input" class="input-label">Select Year</label>
+                <input type="number" id="year-input" name="year" min="2014" max="2024" placeholder="YYYY" class="rounded-input" required>
+
+                <!-- State/UT Dropdown -->
+                <label for="state-dropdown" class="input-label">Select State/UT</label>
+                <select id="state-dropdown" name="state" class="dropdown rounded-input">
+                    <option value="">Select State/Union Territory</option>
+                    <!-- States will be populated by JavaScript -->
+                </select>
+
+                <!-- Button -->
+                <button type="button" id="submit-button" class="submit-btn">Track</button>
+            </form>
+        </div>
+
+        <!-- Output Section -->
+        <div id="state-output-container" class="output-card" style="display: none;">
+            <div class="state-output">
+                <img id="state-image" src="" alt="State/UT Image">
+                <div id="state-name" class="state-name"></div>
+                <div id="state-co2" class="state-co2"></div>
+            </div>
+        </div>
+
+        <!-- Carousel Section -->
+        <div class="carousel-container" id="carousel-container" style="display: none;">
+            <div class="carousel" id="carousel"></div>
+        </div>
+    </div>
+
+    <!-- Link to the JS file -->
+    <script src="script.js"></script>
+</body>
+</html>
+
