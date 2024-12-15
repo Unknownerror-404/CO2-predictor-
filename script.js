@@ -1,6 +1,6 @@
 // Define data for states and CO2 percentages
 const data = {
-    "Andhra Pradesh": { image: "images/andhra-pradesh.jpg", co2: [0.034,0.035,0036,0.037,0.038,0.039,0.040,0.041,0.042,0.043] },
+    "Andhra Pradesh": { image: "images/andhra-pradesh.jpg", co2: [0.034,0.035,0.036,0.037,0.038,0.039,0.040,0.041,0.042,0.043] },
     "Arunachal Pradesh": { image: "images/arunachal-pradesh.jpg", co2: [0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001] },
     "Assam": { image: "images/assam.jpg", co2: [0.007,0.007,0.007,0.007,0.007,0.007,0.007,0.007,0.007,0.007] },
     "Bihar": { image: "images/bihar.jpg", co2: [0.011,0.012,0.013,0.014,0.015,0.016,0.017,0.018,0.019,0.020] },
