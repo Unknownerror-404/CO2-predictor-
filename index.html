@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CO₂ Tracker | Welcome</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      height: 100vh;
+      background: linear-gradient(to right, #d3cce3, #e9e4f0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .welcome-container {
+      text-align: center;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      width: 90%;
+      max-width: 700px;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+
+    p.subtitle {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .get-started-btn {
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      background-color: #4e6bff;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .get-started-btn:hover {
+      background-color: #354ac0;
+    }
+
+    .credits {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #333;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="welcome-container">
+    <h1>CO₂ Emission Intelligence Portal</h1>
+    <p class="subtitle">
+      Visualize and predict India's carbon dioxide emissions<br/>
+      across states and union territories from 2014–2025.
+    </p>
+    <button class="get-started-btn" onclick="location.href='body.html'">Get Started →</button>
+
+    <div class="credits">
+      Created and Managed by <strong>Rushi & Aniket</strong>
+    </div>
+  </div>
+
+</body>
+</html>
