@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CO₂ Awareness Quiz</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #e0f7fa 50%, #fce4ec 50%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-size: cover;
+      color: #2c3e50;
+    }
+
+    .quiz-container {
+      background-color: rgba(255, 255, 255, 0.9);
+      width: 90%;
+      max-width: 800px;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    h1 {
+      color: #388e3c;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .options button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      background-color: #4caf50;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .options button:hover {
+      background-color: #388e3c;
+    }
+
+    #feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .next-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #2196f3;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .next-btn:hover {
+      background-color: #1976d2;
+    }
+
+    #score-container {
+      font-size: 1.2rem;
+      margin-top: 30px;
+      color: #004d40;
+    }
+
+    .back-btn {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #ff5722;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      background-color: #d84315;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quiz-container">
+    <h1>🌍 CO₂ Awareness Quiz</h1>
+    <div id="quiz-box">
+      <div class="question" id="question">Loading question...</div>
+      <div class="options" id="options"></div>
+      <div id="feedback"></div>
+      <button class="next-btn" id="next-btn">Next</button>
+    </div>
+    <div id="score-container" style="display:none;"></div>
+    <button class="back-btn" onclick="window.location.href='index.html'">← Go Back</button>
+  </div>
+
+  <script>
+    const quizData = [
+      { q: "Which sector emits the most CO₂ globally?", o: ["Transport", "Agriculture", "Electricity & Heat", "Waste"], a: "Electricity & Heat" },
+      { q: "Which gas is the primary cause of global warming?", o: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Methane"], a: "Carbon Dioxide" },
+      { q: "What is the safe level of atmospheric CO₂ (ppm)?", o: ["250", "350", "450", "550"], a: "350" },
+      { q: "Which of these is a renewable energy source?", o: ["Coal", "Natural Gas", "Wind", "Diesel"], a: "Wind" },
+      { q: "Main contributor to urban air pollution?", o: ["Factories", "Farms", "Vehicles", "Forests"], a: "Vehicles" },
+      { q: "IPCC stands for?", o: ["Interplanetary Climate Council", "International Panel on Climate Change", "Intergovernmental Panel on Climate Change", "Int'l Power and Climate Coalition"], a: "Intergovernmental Panel on Climate Change" },
+      { q: "Which of these traps heat in Earth's atmosphere?", o: ["Carbon Dioxide", "Helium", "Oxygen", "Argon"], a: "Carbon Dioxide" },
+      { q: "What is the effect of deforestation?", o: ["Less oxygen", "More CO₂", "Climate change", "All of the above"], a: "All of the above" },
+      { q: "CO₂ is mostly produced by?", o: ["Respiration", "Photosynthesis", "Combustion", "Drinking water"], a: "Combustion" },
+      { q: "Which country is a top CO₂ emitter?", o: ["Bhutan", "India", "USA", "Nepal"], a: "USA" },
+      { q: "Which gas is NOT a greenhouse gas?", o: ["Methane", "Oxygen", "Nitrous Oxide", "CO₂"], a: "Oxygen" },
+      { q: "Best way to lower carbon footprint?", o: ["Drive alone", "Recycle", "Burn trash", "Eat more meat"], a: "Recycle" },
+      { q: "Effect of rising sea levels?", o: ["Increased rainfall", "Flooded coasts", "Stronger ozone", "More oxygen"], a: "Flooded coasts" },
+      { q: "Which of these helps reduce CO₂?", o: ["Planting trees", "Cutting trees", "Burning oil", "Ignoring emissions"], a: "Planting trees" },
+      { q: "What is carbon neutrality?", o: ["No carbon in body", "Balancing CO₂ emission & absorption", "Only driving EVs", "None"], a: "Balancing CO₂ emission & absorption" },
+      { q: "Climate change causes...", o: ["Stable weather", "More glaciers", "Extreme weather", "Fewer droughts"], a: "Extreme weather" },
+      { q: "What is a carbon footprint?", o: ["Shoe size", "Amount of CO₂ you emit", "CO₂ from factories only", "None"], a: "Amount of CO₂ you emit" },
+      { q: "Melting of which region contributes to sea rise?", o: ["Amazon", "Antarctica", "Sahara", "Himalayas"], a: "Antarctica" },
+      { q: "What does 'ppm' stand for?", o: ["Parts per meter", "Per person measured", "Parts per million", "None"], a: "Parts per million" },
+      { q: "Which organ is most affected by air pollution?", o: ["Heart", "Liver", "Brain", "Lungs"], a: "Lungs" },
+      { q: "Best energy source for zero emissions?", o: ["Coal", "Nuclear", "Solar", "Petrol"], a: "Solar" }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const feedbackEl = document.getElementById("feedback");
+    const nextBtn = document.getElementById("next-btn");
+    const scoreContainer = document.getElementById("score-container");
+
+    function loadQuestion() {
+      const q = quizData[current];
+      questionEl.textContent = q.q;
+      optionsEl.innerHTML = "";
+      feedbackEl.textContent = "";
+      nextBtn.style.display = "none";
+
+      q.o.forEach(option => {
+        const btn = document.createElement("button");
+        btn.textContent = option;
+        btn.onclick = () => checkAnswer(option);
+        optionsEl.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(selected) {
+      const correct = quizData[current].a;
+      feedbackEl.textContent = selected === correct ? "✅ Correct!" : `❌ Incorrect. Answer: ${correct}`;
+      Array.from(optionsEl.children).forEach(btn => btn.disabled = true);
+      nextBtn.style.display = "inline-block";
+    }
+
+    nextBtn.onclick = () => {
+      current++;
+      if (current < quizData.length) {
+        loadQuestion();
+      } else {
+        showScore();
+      }
+    };
+
+    function showScore() {
+      document.getElementById("quiz-box").style.display = "none";
+      scoreContainer.style.display = "block";
+      scoreContainer.innerHTML = `🎓 Final Score: <strong>${score}</strong> out of <strong>${quizData.length}</strong>`;
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
