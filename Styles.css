@@ -1,4 +1,4 @@
-/* Global Styles */
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -73,7 +73,7 @@ h1 {
     background: #e63e00;
 }
 
-/* Enhanced Output Section */
+
 .output-card {
     background: #f8faff;
     border-radius: 20px;
