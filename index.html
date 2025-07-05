@@ -2,88 +2,190 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CO₂ Tracker | Welcome</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CO₂ Awareness Portal | Rushi & Aniket</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --primary: #2e7d32;
+      --accent: #4caf50;
+      --hover: #388e3c;
+      --bg-light: #f1f8e9;
+      --bg-dark: #1a1a1a;
+      --text-dark: #2c3e50;
+      --text-light: #ffffff;
     }
 
     body {
-      font-family: 'Roboto', sans-serif;
-      height: 100vh;
-      background: linear-gradient(to right, #d3cce3, #e9e4f0);
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      transition: background 0.4s ease, color 0.4s ease;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
-    .welcome-container {
+    body.dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    header {
+      background-color: var(--primary);
+      color: var(--text-light);
       text-align: center;
-      padding: 40px;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(10px);
-      width: 90%;
-      max-width: 700px;
+      padding: 3rem 1.5rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
 
-    h1 {
-      font-size: 2.8rem;
-      color: #2c3e50;
-      margin-bottom: 15px;
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
     }
 
-    p.subtitle {
+    header p {
       font-size: 1.2rem;
-      color: #555;
-      margin-bottom: 30px;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.9;
     }
 
-    .get-started-btn {
-      padding: 15px 30px;
-      font-size: 1.1rem;
-      background-color: #4e6bff;
-      color: #fff;
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      background-color: var(--accent);
+      color: var(--text-light);
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
-      transition: 0.3s ease;
-      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    .get-started-btn:hover {
-      background-color: #354ac0;
+    .btn:hover {
+      background-color: var(--hover);
+      transform: translateY(-2px);
     }
 
-    .credits {
-      margin-top: 40px;
+    footer {
+      background-color: #f5f5f5;
+      color: #555;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 0.95rem;
+      border-top: 1px solid #ddd;
+    }
+
+    body.dark-mode footer {
+      background-color: #222;
+      color: #bbb;
+      border-top-color: #444;
+    }
+
+    .disclaimer {
+      font-size: 0.85rem;
+      margin-top: 1rem;
+      color: #888;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .dark-mode .disclaimer {
+      color: #aaa;
+    }
+
+    .toggle-mode {
+      margin-top: 20px;
       font-size: 0.9rem;
-      color: #333;
-      opacity: 0.8;
+      background: transparent;
+      border: 2px solid var(--accent);
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      color: var(--accent);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .toggle-mode:hover {
+      background-color: var(--accent);
+      color: var(--text-light);
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+      .btn {
+        padding: 0.9rem 1.5rem;
+        font-size: 0.95rem;
+      }
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>🌍 CO₂ Awareness Portal</h1>
+    <p>Explore, Learn, and Act — Protect Our Planet with Knowledge</p>
+  </header>
 
-  <div class="welcome-container">
-    <h1>CO₂ Emission Intelligence Portal</h1>
-    <p class="subtitle">
-      Visualize and predict India's carbon dioxide emissions<br/>
-      across states and union territories from 2014–2025.
-    </p>
-    <button class="get-started-btn" onclick="location.href='body.html'">Get Started →</button>
-
-    <div class="credits">
-      Created and Managed by <strong>Rushi & Aniket</strong>
+  <main>
+    <div class="button-group" role="navigation" aria-label="Main Navigation">
+      <a href="Body.html" class="btn" aria-label="CO2 Tracker">📊 CO₂ Tracker</a>
+      <a href="solutions.html" class="btn" aria-label="Solutions">🛠️ Solutions</a>
+      <a href="quiz.html" class="btn" aria-label="Climate Quiz">❓ Climate Quiz</a>
+      <a href="protected.html" class="btn" aria-label="Protected Info">⚠️ Protected Info</a>
+      <a href="about.html" class="btn" aria-label="About Project">📘 About Project</a>
+      <a href="ancient.html" class="btn" aria-label="Ancient Earth">🏞️ Ancient Earth</a>
+      <a href="balance.html" class="btn" aria-label="Gas Balance">⚖️ Old Gas Balance</a>
     </div>
-  </div>
 
+    <button class="toggle-mode" onclick="toggleDarkMode()">🌓 Toggle Dark Mode</button>
+  </main>
+
+  <footer>
+    Created with passion by <strong>Rushi Dushinge</strong> & <strong>Aniket Kuyate</strong> | © 2025 CO₂ Awareness Project
+    <div class="disclaimer">
+      Disclaimer: This website uses public APIs and images sourced from their respective owners. This is an educational and academic site.
+    </div>
+  </footer>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+
+    // Load saved theme
+    window.onload = function () {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
 </body>
 </html>
