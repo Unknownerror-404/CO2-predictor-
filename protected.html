@@ -5,48 +5,96 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>⚠ Protected CO₂ Hazards</title>
   <style>
+    :root {
+      --bg-light: linear-gradient(to right, #fff0f0, #fefae0);
+      --bg-dark: linear-gradient(to right, #1c1c1c, #2c2c2c);
+      --text-light: #2c2c2c;
+      --text-dark: #f1f1f1;
+      --danger-red: #ff1744;
+      --deep-red: #b71c1c;
+      --warn-bg: #ffebee;
+      --warn-border: #f44336;
+      --accent-green: #4CAF50;
+      --footer-color: #999;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #fff0f0, #fefae0);
-      color: #2c2c2c;
+      background: var(--bg-light);
+      color: var(--text-light);
+      margin: 0;
       padding: 40px 20px;
       text-align: center;
+      transition: 0.3s ease all;
+    }
+
+    body.dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-dark);
     }
 
     .container {
       max-width: 1000px;
       margin: auto;
       padding: 30px;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.9);
       border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(255, 0, 0, 0.15);
-      border: 2px solid #ff5252;
+      box-shadow: 0 0 40px rgba(255, 0, 0, 0.3);
+      border: 3px solid var(--danger-red);
+      animation: pulse 2s infinite;
+      transition: 0.3s ease all;
+    }
+
+    body.dark-mode .container {
+      background: rgba(0, 0, 0, 0.6);
+      border-color: #ff5252;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 30px rgba(255, 0, 0, 0.3); }
+      50% { box-shadow: 0 0 45px rgba(255, 0, 0, 0.5); }
+      100% { box-shadow: 0 0 30px rgba(255, 0, 0, 0.3); }
     }
 
     h1 {
-      color: #b71c1c;
-      font-size: 2.2rem;
+      color: var(--deep-red);
+      font-size: 2.4rem;
       margin-bottom: 20px;
     }
 
     .warning {
-      background-color: #ffebee;
+      background-color: var(--warn-bg);
       padding: 15px;
-      border-left: 6px solid #f44336;
+      border-left: 6px solid var(--warn-border);
       font-weight: bold;
       margin-bottom: 25px;
-      color: #b71c1c;
+      color: var(--deep-red);
+      font-size: 1.05rem;
+    }
+
+    body.dark-mode .warning {
+      background-color: #3c0e0e;
+      border-left: 6px solid #ef5350;
+      color: #ff8a80;
     }
 
     h2 {
       color: #d84315;
-      margin-top: 30px;
-      font-size: 1.5rem;
+      margin-top: 35px;
+      font-size: 1.6rem;
+      border-bottom: 2px dashed #ccc;
+      padding-bottom: 8px;
+    }
+
+    body.dark-mode h2 {
+      color: #ff8a65;
+      border-bottom: 2px dashed #888;
     }
 
     p {
       font-size: 1.1rem;
       margin-bottom: 15px;
+      line-height: 1.7;
     }
 
     ul {
@@ -57,8 +105,12 @@
 
     li {
       margin-bottom: 12px;
-      color: #5a0000;
       font-size: 1rem;
+      color: #5a0000;
+    }
+
+    body.dark-mode li {
+      color: #ffcdd2;
     }
 
     a {
@@ -71,10 +123,10 @@
     }
 
     .back-btn {
-      margin-top: 35px;
-      padding: 10px 25px;
+      margin-top: 40px;
+      padding: 12px 28px;
       font-size: 1rem;
-      background-color: #4CAF50;
+      background-color: var(--accent-green);
       color: white;
       border: none;
       border-radius: 10px;
@@ -86,14 +138,39 @@
       background-color: #2e7d32;
     }
 
+    .toggle-dark-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #607d8b;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+    }
+
+    .toggle-dark-btn:hover {
+      background-color: #455a64;
+    }
+
     footer {
       margin-top: 50px;
       font-size: 0.85rem;
-      color: #777;
+      color: var(--footer-color);
+    }
+
+    body.dark-mode footer {
+      color: #aaa;
     }
   </style>
 </head>
 <body>
+
+  <button class="toggle-dark-btn" onclick="toggleDarkMode()">🌓 Toggle Dark Mode</button>
 
   <div class="container">
     <h1>⚠ Protected: Harmful Effects of CO₂ Emissions</h1>
@@ -104,51 +181,67 @@
     </div>
 
     <h2>🌍 Environmental Impacts</h2>
-    <p>CO₂ is the leading greenhouse gas causing long-term changes in Earth's systems:</p>
+    <p>CO₂ is the leading greenhouse gas causing long-term shifts in Earth's systems:</p>
     <ul>
-      <li><strong>Global Warming:</strong> Increases the Earth's average temperature, disrupting climate cycles.</li>
-      <li><strong>Arctic Meltdown:</strong> Polar ice caps are shrinking rapidly due to warming, raising sea levels.</li>
-      <li><strong>Ocean Acidification:</strong> CO₂ absorbed by oceans lowers pH, damaging corals and plankton.</li>
-      <li><strong>Climate Instability:</strong> Weather becomes extreme — floods, droughts, storms increase.</li>
+      <li><strong>Global Warming:</strong> Rising global temperatures disrupt ecosystems and seasons.</li>
+      <li><strong>Arctic Meltdown:</strong> Ice caps are shrinking fast, raising sea levels dangerously.</li>
+      <li><strong>Ocean Acidification:</strong> CO₂ reacts with seawater, destroying corals and marine food chains.</li>
+      <li><strong>Climate Instability:</strong> Increased extreme weather: droughts, floods, wildfires, and storms.</li>
     </ul>
-    <p>As noted by the <a href="https://www.ipcc.ch/report/ar6/syr/" target="_blank">IPCC Sixth Assessment Report</a>, these changes may become irreversible past critical thresholds.</p>
+    <p><a href="https://www.ipcc.ch/report/ar6/syr/" target="_blank">Source: IPCC Sixth Assessment Report</a></p>
 
     <h2>😷 Human Health Risks</h2>
-    <p>Prolonged exposure to CO₂ and related gases affects physical and mental health:</p>
+    <p>Long-term CO₂ exposure, especially in urban zones, leads to:</p>
     <ul>
-      <li><strong>Respiratory Illness:</strong> Higher CO₂ aggravates asthma, bronchitis, and breathing difficulty.</li>
-      <li><strong>Brain Function:</strong> According to <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7318404/" target="_blank">NIH studies</a>, CO₂ impairs decision-making and cognitive response time.</li>
-      <li><strong>Heat Stress:</strong> Linked with dehydration, cardiovascular strain, and death in vulnerable populations.</li>
-      <li><strong>Pollution Synergy:</strong> CO₂ acts with PM2.5 and ozone to worsen urban smog and illness (<a href="https://www.who.int/news-room/fact-sheets/detail/ambient-(outdoor)-air-quality-and-health" target="_blank">WHO Fact Sheet</a>).</li>
+      <li><strong>Respiratory Illness:</strong> Chronic exposure worsens asthma and bronchial infections.</li>
+      <li><strong>Brain Function:</strong> <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7318404/" target="_blank">NIH study</a> links CO₂ with impaired decision-making and slower cognitive responses.</li>
+      <li><strong>Heat Stress:</strong> Heatwaves caused by warming increase strokes, dehydration, and fatalities.</li>
+      <li><strong>Pollution Synergy:</strong> CO₂ enhances PM2.5 and ozone effects, worsening air quality (<a href="https://www.who.int/news-room/fact-sheets/detail/ambient-(outdoor)-air-quality-and-health" target="_blank">WHO Report</a>).</li>
     </ul>
 
     <h2>💸 Socioeconomic & Global Effects</h2>
     <ul>
-      <li><strong>Food Security:</strong> Crop failure from erratic climate reduces yield and access to food.</li>
-      <li><strong>Water Crisis:</strong> Snow-fed rivers and rainfall become less reliable in hot, unstable zones.</li>
-      <li><strong>Climate Refugees:</strong> Rising sea levels and land loss force migration in low-lying countries (<a href="https://www.unhcr.org/en-in/climate-change-and-disasters.html" target="_blank">UNHCR on Climate Refugees</a>).</li>
-      <li><strong>Economic Collapse:</strong> Damage to infrastructure, agriculture, and health systems burdens national budgets.</li>
+      <li><strong>Food Security:</strong> Climate shifts damage crop yields and lead to food shortages.</li>
+      <li><strong>Water Scarcity:</strong> Glacial melt and erratic rain patterns affect billions.</li>
+      <li><strong>Climate Refugees:</strong> Millions displaced by rising seas and heat (<a href="https://www.unhcr.org/en-in/climate-change-and-disasters.html" target="_blank">UNHCR Data</a>).</li>
+      <li><strong>Economic Collapse:</strong> Infrastructure, healthcare, and agriculture losses hit national budgets hard.</li>
     </ul>
 
     <h2>🚨 Irreversible Tipping Points</h2>
     <ul>
-      <li><strong>Amazon Dieback:</strong> Deforestation and warming may turn the Amazon from a CO₂ sink to a source.</li>
-      <li><strong>Methane Release:</strong> Melting permafrost in Siberia may unleash methane — a more potent greenhouse gas.</li>
-      <li><strong>Coral Reef Collapse:</strong> Ocean warming + acidification leads to coral bleaching worldwide.</li>
-      <li><strong>Glacier Feedback Loop:</strong> Melting glaciers reduce reflection (albedo), accelerating heat absorption.</li>
+      <li><strong>Amazon Dieback:</strong> Losing tree cover could turn the rainforest into a CO₂ source.</li>
+      <li><strong>Methane Surge:</strong> Melting permafrost may release CH₄ — 80x more potent than CO₂.</li>
+      <li><strong>Coral Bleaching:</strong> Acidification and heat kill entire reef systems, permanently.</li>
+      <li><strong>Glacier-Albedo Feedback:</strong> Less reflective ice means faster Earth heating in a deadly loop.</li>
     </ul>
-    <p>These risks are supported by long-term models by <a href="https://climate.nasa.gov/" target="_blank">NASA Climate</a> and global science panels.</p>
+    <p>Model data from <a href="https://climate.nasa.gov/" target="_blank">NASA Climate</a> supports these warnings.</p>
 
     <button class="back-btn" onclick="window.location.href='Body.html'">← Go Back</button>
 
     <footer>
-      Information compiled from <a href="https://www.ipcc.ch" target="_blank">IPCC</a>,
+      Compiled from:
+      <a href="https://www.ipcc.ch" target="_blank">IPCC</a>,
       <a href="https://www.un.org/en/climatechange" target="_blank">UN Climate</a>,
       <a href="https://climate.nasa.gov" target="_blank">NASA</a>,
-      <a href="https://www.who.int" target="_blank">WHO</a>, and
-      <a href="https://www.unhcr.org" target="_blank">UNHCR</a>.
+      <a href="https://www.who.int" target="_blank">WHO</a>,
+      <a href="https://www.unhcr.org" target="_blank">UNHCR</a>,
+      and <a href="https://www.ncbi.nlm.nih.gov/" target="_blank">NIH</a>.
     </footer>
   </div>
 
+  <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+      }
+    });
+
+
+    function toggleDarkMode() {
+      const isDark = document.body.classList.toggle("dark-mode");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    }
+  </script>
 </body>
 </html>
