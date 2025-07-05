@@ -3,14 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CO₂ Prediction | Rushi & Aniket</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>CO₂ Insights & Tracker | Rushi & Aniket</title>
   <style>
-    body {
-      background: linear-gradient(to right, lavender, #f0e6ff);
-      color: #2c3e50;
-      text-align: center;
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f1f8e9, #e0f7fa);
+      color: #2c3e50;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 10px;
+    }
+
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .form-card {
+      background: rgba(255, 255, 255, 0.3);
+      padding: 30px;
+      border-radius: 25px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(12px);
+      width: 100%;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #1b5e20;
+    }
+
+    .input-label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .rounded-input {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      outline: none;
+      margin-bottom: 10px;
+      background-color: #ffffffdd;
+    }
+
+    .submit-btn {
+      margin-top: 15px;
+      padding: 12px 28px;
+      font-size: 1rem;
+      background-color: #43a047;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #2e7d32;
     }
 
     .back-button {
@@ -18,43 +89,91 @@
       top: 20px;
       left: 20px;
       padding: 10px 20px;
-      background-color: #ff5733;
+      background-color: #ff7043;
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 1rem;
       cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      transition: background-color 0.3s;
-      z-index: 999;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
     .back-button:hover {
-      background-color: #e63e00;
+      background-color: #e64a19;
+    }
+
+    #state-output-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .state-output {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.3);
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .state-output img {
+      width: 220px;
+      border-radius: 16px;
+      border: 3px solid #4caf50;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      margin-bottom: 16px;
+    }
+
+    .state-name {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #2e7d32;
+    }
+
+    .state-co2 {
+      font-size: 1.1rem;
+      margin-top: 10px;
+      color: #555;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .carousel-container {
       overflow: hidden;
-      width: 100%;
-      max-width: 1200px;
-      margin: 30px auto;
+      width: 100vw;
       position: relative;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 20px 0;
+      margin-top: 30px;
     }
 
     .carousel {
       display: flex;
-      animation: scroll-left 25s linear infinite;
+      animation: scroll-left 40s linear infinite;
     }
 
     .carousel-item {
       text-align: center;
-      margin: 0 30px;
+      margin: 0 20px;
       flex-shrink: 0;
     }
 
     .carousel-item img {
-      width: 120px;
-      height: 120px;
+      width: 100px;
+      height: 100px;
       object-fit: cover;
       border-radius: 12px;
       border: 2px solid #ccc;
@@ -65,7 +184,6 @@
     .carousel-item div {
       font-size: 1rem;
       color: #000;
-      margin-bottom: 5px;
     }
 
     @keyframes scroll-left {
@@ -76,82 +194,26 @@
         transform: translateX(-100%);
       }
     }
-
-    #state-output-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 30px;
-    }
-
-    .state-output {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-color: rgba(255, 255, 255, 0.25);
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-      max-width: 600px;
-      width: 100%;
-      animation: fadeIn 0.5s ease-in-out;
-    }
-
-    .state-output img {
-      width: 220px;
-      height: auto;
-      border-radius: 16px;
-      border: 3px solid #4e6bff;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      margin-bottom: 16px;
-    }
-
-    .state-name {
-      font-size: 1.6rem;
-      font-weight: bold;
-      color: #333;
-    }
-
-    .state-co2 {
-      font-size: 1.2rem;
-      margin-top: 10px;
-      color: #555;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: scale(0.96);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
   </style>
 </head>
 <body>
-
-
   <button class="back-button" onclick="window.location.href='index.html'">← Back</button>
 
   <div class="app-container">
-
     <div class="form-card">
-      <h1>CO<sub>2</sub> Emission Tracker</h1>
+      <h1>📊 CO₂ Emission Tracker</h1>
       <form onsubmit="return false;">
-        <label for="year-input" class="input-label">Select Year</label>
+        <label for="year-input" class="input-label">📅 Select Year</label>
         <input type="number" id="year-input" name="year" min="2014" max="2025" placeholder="YYYY" class="rounded-input" required />
 
-        <label for="state-dropdown" class="input-label">Select State/UT</label>
-        <select id="state-dropdown" name="state" class="dropdown rounded-input">
+        <label for="state-dropdown" class="input-label">🌐 Select State/UT</label>
+        <select id="state-dropdown" name="state" class="rounded-input">
           <option value="">Select State/Union Territory</option>
         </select>
 
-        <button type="button" id="submit-button" class="submit-btn">Track</button>
+        <button type="button" id="submit-button" class="submit-btn">Track Emissions</button>
       </form>
     </div>
-
 
     <div id="state-output-container" class="output-card" style="display: none;">
       <div class="state-output">
@@ -162,16 +224,13 @@
       </div>
     </div>
 
-    <!-- Carousel Section -->
     <div class="carousel-container" id="carousel-container" style="display: none;">
-      <div class="carousel" id="carousel"></div>
+      <div class="carousel" id="carousel">
+        <!-- Carousel content will appear here -->
+      </div>
     </div>
-
-    <!-- Predict Button -->
-    <button id="future-button" class="submit-btn">Predict CO2 Emissions</button>
   </div>
 
-  <!-- Script -->
   <script src="script.js"></script>
 </body>
 </html>
