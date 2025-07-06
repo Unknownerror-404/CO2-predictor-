@@ -5,17 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CO₂ Awareness Quiz</title>
   <style>
+    :root {
+      --bg-light: linear-gradient(to right, #e0f7fa 50%, #fce4ec 50%);
+      --bg-dark: linear-gradient(to right, #263238 50%, #37474f 50%);
+      --text-light: #2c3e50;
+      --text-dark: #f1f1f1;
+      --accent: #4caf50;
+      --accent-dark: #388e3c;
+      --btn-blue: #2196f3;
+      --btn-blue-dark: #1976d2;
+      --btn-red: #ff5722;
+      --btn-red-dark: #d84315;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(to right, #e0f7fa 50%, #fce4ec 50%);
+      background: var(--bg-light);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       background-size: cover;
-      color: #2c3e50;
+      color: var(--text-light);
+      transition: 0.3s ease all;
+    }
+
+    body.dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-dark);
     }
 
     .quiz-container {
@@ -26,11 +45,27 @@
       padding: 40px;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
       text-align: center;
+      transition: 0.3s ease;
+    }
+
+    body.dark-mode .quiz-container {
+      background-color: rgba(0, 0, 0, 0.3);
     }
 
     h1 {
-      color: #388e3c;
+      color: var(--accent);
       margin-bottom: 20px;
+      font-size: 2rem;
+      animation: beat 1.5s infinite alternate;
+    }
+
+    @keyframes beat {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.05);
+      }
     }
 
     .question {
@@ -50,7 +85,7 @@
       padding: 10px 15px;
       border: none;
       border-radius: 8px;
-      background-color: #4caf50;
+      background-color: var(--accent);
       color: white;
       font-size: 1rem;
       cursor: pointer;
@@ -58,7 +93,7 @@
     }
 
     .options button:hover {
-      background-color: #388e3c;
+      background-color: var(--accent-dark);
     }
 
     #feedback {
@@ -69,7 +104,7 @@
     .next-btn {
       margin-top: 20px;
       padding: 10px 20px;
-      background-color: #2196f3;
+      background-color: var(--btn-blue);
       color: white;
       border: none;
       border-radius: 8px;
@@ -78,7 +113,7 @@
     }
 
     .next-btn:hover {
-      background-color: #1976d2;
+      background-color: var(--btn-blue-dark);
     }
 
     #score-container {
@@ -90,7 +125,7 @@
     .back-btn {
       margin-top: 30px;
       padding: 10px 20px;
-      background-color: #ff5722;
+      background-color: var(--btn-red);
       color: white;
       border: none;
       border-radius: 10px;
@@ -98,11 +133,31 @@
     }
 
     .back-btn:hover {
-      background-color: #d84315;
+      background-color: var(--btn-red-dark);
+    }
+
+    .toggle-dark-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 16px;
+      background-color: #607d8b;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    .toggle-dark-btn:hover {
+      background-color: #455a64;
     }
   </style>
 </head>
 <body>
+  <button class="toggle-dark-btn" onclick="toggleDarkMode()">🌓 Toggle Dark Mode</button>
 
   <div class="quiz-container">
     <h1>🌍 CO₂ Awareness Quiz</h1>
@@ -117,6 +172,18 @@
   </div>
 
   <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+      }
+    });
+
+    function toggleDarkMode() {
+      const isDark = document.body.classList.toggle("dark-mode");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    }
+
     const quizData = [
       { q: "Which sector emits the most CO₂ globally?", o: ["Transport", "Agriculture", "Electricity & Heat", "Waste"], a: "Electricity & Heat" },
       { q: "Which gas is the primary cause of global warming?", o: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Methane"], a: "Carbon Dioxide" },
@@ -141,6 +208,7 @@
       { q: "Best energy source for zero emissions?", o: ["Coal", "Nuclear", "Solar", "Petrol"], a: "Solar" }
     ];
 
+    let shuffledQuiz = [...quizData].sort(() => 0.5 - Math.random());
     let current = 0;
     let score = 0;
 
@@ -151,7 +219,7 @@
     const scoreContainer = document.getElementById("score-container");
 
     function loadQuestion() {
-      const q = quizData[current];
+      const q = shuffledQuiz[current];
       questionEl.textContent = q.q;
       optionsEl.innerHTML = "";
       feedbackEl.textContent = "";
@@ -160,21 +228,21 @@
       q.o.forEach(option => {
         const btn = document.createElement("button");
         btn.textContent = option;
-        btn.onclick = () => checkAnswer(option);
+        btn.onclick = () => checkAnswer(option, q.a);
         optionsEl.appendChild(btn);
       });
     }
 
-    function checkAnswer(selected) {
-      const correct = quizData[current].a;
+    function checkAnswer(selected, correct) {
       feedbackEl.textContent = selected === correct ? "✅ Correct!" : `❌ Incorrect. Answer: ${correct}`;
+      if (selected === correct) score++;
       Array.from(optionsEl.children).forEach(btn => btn.disabled = true);
       nextBtn.style.display = "inline-block";
     }
 
     nextBtn.onclick = () => {
       current++;
-      if (current < quizData.length) {
+      if (current < shuffledQuiz.length) {
         loadQuestion();
       } else {
         showScore();
@@ -184,7 +252,7 @@
     function showScore() {
       document.getElementById("quiz-box").style.display = "none";
       scoreContainer.style.display = "block";
-      scoreContainer.innerHTML = `🎓 Final Score: <strong>${score}</strong> out of <strong>${quizData.length}</strong>`;
+      scoreContainer.innerHTML = `🎓 Final Score: <strong>${score}</strong> out of <strong>${shuffledQuiz.length}</strong>`;
     }
 
     loadQuestion();

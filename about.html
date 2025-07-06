@@ -5,24 +5,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About the Project | CO₂ Awareness</title>
   <style>
+    :root {
+      --bg-color: #f1f8e9;
+      --text-color: #333;
+      --accent: #2e7d32;
+      --header-bg: #1b5e20;
+      --button-bg: #4CAF50;
+      --button-hover: #388e3c;
+      --disclaimer-bg: #fce4ec;
+      --disclaimer-border: #d81b60;
+      --disclaimer-text: #4a148c;
+    }
+
+    body.dark-mode {
+      --bg-color: #1e1e1e;
+      --text-color: #f0f0f0;
+      --accent: #a5d6a7;
+      --header-bg: #263238;
+      --button-bg: #455a64;
+      --button-hover: #607d8b;
+      --disclaimer-bg: #2e2e2e;
+      --disclaimer-border: #c2185b;
+      --disclaimer-text: #f48fb1;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #f1f8e9, #e3f2fd);
-      color: #333;
+      background: var(--bg-color);
+      color: var(--text-color);
       margin: 0;
       padding: 0;
+      transition: background 0.3s, color 0.3s;
     }
 
     header {
-      background-color: #1b5e20;
+      background-color: var(--header-bg);
       color: white;
       padding: 30px 20px;
       text-align: center;
+      position: relative;
     }
 
     header h1 {
       font-size: 2.5rem;
       margin: 0;
+    }
+
+    .toggle-dark {
+      position: absolute;
+      right: 20px;
+      top: 30px;
+      background-color: var(--button-bg);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .toggle-dark:hover {
+      background-color: var(--button-hover);
     }
 
     .container {
@@ -33,7 +77,7 @@
     }
 
     h2 {
-      color: #2e7d32;
+      color: var(--accent);
       margin-top: 40px;
     }
 
@@ -53,18 +97,18 @@
     .disclaimer {
       margin-top: 50px;
       font-size: 0.95rem;
-      background-color: #fce4ec;
-      border-left: 4px solid #d81b60;
+      background-color: var(--disclaimer-bg);
+      border-left: 4px solid var(--disclaimer-border);
       padding: 15px;
       border-radius: 8px;
-      color: #4a148c;
+      color: var(--disclaimer-text);
     }
 
     .back-btn {
       display: block;
       margin: 50px auto 20px;
       padding: 10px 25px;
-      background-color: #4CAF50;
+      background-color: var(--button-bg);
       color: white;
       border: none;
       border-radius: 8px;
@@ -74,16 +118,23 @@
     }
 
     .back-btn:hover {
-      background-color: #388e3c;
+      background-color: var(--button-hover);
     }
   </style>
 </head>
 <body>
   <header>
     <h1>📘 About This Project</h1>
+    <button class="toggle-dark" onclick="toggleDarkMode()">Toggle Dark Mode</button>
   </header>
 
   <div class="container">
+    <h2>🌱 Purpose</h2>
+    <p>
+      This initiative is driven by one purpose: to <strong>highlight the invisible threats of unnecessary and hazardous gas emissions</strong> and encourage everyday citizens to take action. It's not about fame, profit, or recognition — it's about responsibility and hope.
+    </p>
+
+    <h2>📖 Story</h2>
     <p>
       This project was born from a passion for the planet and the belief that knowledge can lead to action.
       Rushi Dushinge, with a strong interest in <strong>environmental science</strong> and <strong>geography</strong>, began thinking deeply about the Earth's changing atmosphere during his 12th-grade journey in the PCM stream.
@@ -95,11 +146,6 @@
 
     <p>
       With the encouragement and collaboration of his close friend <strong>Aniket Kuyate</strong>, the idea for a structured environmental awareness project took form. Together, they drafted the blueprint for what would become the CO₂ Awareness Portal — a platform not meant for personal benefit, but to inform, educate, and inspire change in even one person.
-    </p>
-
-    <h2>🌱 Purpose</h2>
-    <p>
-      This initiative is driven by one purpose: to <strong>highlight the invisible threats of unnecessary and hazardous gas emissions</strong> and encourage everyday citizens to take action. It's not about fame, profit, or recognition — it's about responsibility and hope.
     </p>
 
     <h2>🔧 Challenges Faced</h2>
@@ -122,10 +168,30 @@
 
     <div class="disclaimer">
       <strong>Disclaimer:</strong><br>
-      This project makes use of publicly available APIs and resources. Images, datasets, and other referenced materials are the property of their respective owners. We do not claim ownership over any external content. This project is created solely for <strong>educational and academic purposes</strong>.
+      This website uses public APIs and images sourced from respective owners.  
+      We do <strong>not</strong> claim ownership over third-party content.  
+      This site is intended strictly for <strong>educational and academic purposes</strong> only.  
+      Due to the large number of assets used, we couldn't list every owner name — we are truly sorry.  
+      However, <strong>if your image contained your name, we have not removed or altered it</strong>.  
+      Thank you for understanding.
     </div>
 
     <button class="back-btn" onclick="window.location.href='index.html'">← Back to Home</button>
   </div>
+
+  <script>
+ 
+    document.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+      }
+    });
+
+   
+    function toggleDarkMode() {
+      const isDark = document.body.classList.toggle("dark-mode");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    }
+  </script>
 </body>
 </html>

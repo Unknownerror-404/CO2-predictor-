@@ -5,19 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ancient Earth | CO₂ Awareness</title>
   <style>
+    :root {
+      --bg-light: linear-gradient(to right, #fff3e0, #e1f5fe);
+      --bg-dark: linear-gradient(to right, #1b1b1b, #2e2e2e);
+      --text-light: #333;
+      --text-dark: #f0f0f0;
+      --header-light: #6d4c41;
+      --header-dark: #3e2723;
+      --btn-light: #795548;
+      --btn-dark: #5d4037;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #fff3e0, #e1f5fe);
-      color: #333;
+      background: var(--bg-light);
+      color: var(--text-light);
       margin: 0;
       padding: 0;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-dark);
     }
 
     header {
-      background-color: #6d4c41;
+      background-color: var(--header-light);
       color: white;
       padding: 30px 20px;
       text-align: center;
+      transition: background 0.3s ease;
+    }
+
+    body.dark-mode header {
+      background-color: var(--header-dark);
     }
 
     header h1 {
@@ -37,6 +59,10 @@
       margin-top: 30px;
     }
 
+    body.dark-mode h2 {
+      color: #d7ccc8;
+    }
+
     p, li {
       font-size: 1.1rem;
       margin-bottom: 15px;
@@ -50,21 +76,42 @@
       display: block;
       margin: 50px auto 20px;
       padding: 10px 25px;
-      background-color: #795548;
+      background-color: var(--btn-light);
       color: white;
       border: none;
       border-radius: 8px;
       font-size: 1rem;
       cursor: pointer;
-      transition: 0.3s ease;
+      transition: background-color 0.3s ease;
     }
 
     .back-btn:hover {
-      background-color: #5d4037;
+      background-color: var(--btn-dark);
+    }
+
+    .toggle-dark {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 18px;
+      background-color: #607d8b;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+    }
+
+    .toggle-dark:hover {
+      background-color: #455a64;
     }
   </style>
 </head>
 <body>
+  <button class="toggle-dark" onclick="toggleDarkMode()">🌓 Toggle Dark Mode</button>
+
   <header>
     <h1>🌿 Ancient Earth Without CO₂ Pollution</h1>
   </header>
@@ -106,5 +153,24 @@
 
     <button class="back-btn" onclick="window.location.href='index.html'">← Back to Home</button>
   </div>
+
+  <script>
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    });
+
+  
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+      } else {
+        localStorage.setItem('theme', 'light');
+      }
+    }
+  </script>
 </body>
 </html>

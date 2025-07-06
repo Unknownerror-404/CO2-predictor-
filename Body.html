@@ -21,6 +21,7 @@
       align-items: center;
       justify-content: center;
       padding: 40px 10px;
+      transition: background 0.4s ease, color 0.4s ease;
     }
 
     .app-container {
@@ -65,6 +66,7 @@
       outline: none;
       margin-bottom: 10px;
       background-color: #ffffffdd;
+      color: #000;
     }
 
     .submit-btn {
@@ -100,6 +102,25 @@
 
     .back-button:hover {
       background-color: #e64a19;
+    }
+
+    .toggle-dark-mode {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background-color: #607d8b;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: background 0.3s ease;
+    }
+
+    .toggle-dark-mode:hover {
+      background-color: #455a64;
     }
 
     #state-output-container {
@@ -140,17 +161,6 @@
       color: #555;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
     .carousel-container {
       overflow: hidden;
       width: 100vw;
@@ -186,6 +196,17 @@
       color: #000;
     }
 
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     @keyframes scroll-left {
       0% {
         transform: translateX(0);
@@ -194,10 +215,60 @@
         transform: translateX(-100%);
       }
     }
+
+  
+    body.dark-mode {
+      background: linear-gradient(to right, #263238, #37474f);
+      color: #eee;
+    }
+
+    body.dark-mode .form-card,
+    body.dark-mode .state-output,
+    body.dark-mode .carousel-container {
+      background: rgba(255, 255, 255, 0.08);
+      color: #eee;
+    }
+
+    body.dark-mode h1,
+    body.dark-mode .state-name,
+    body.dark-mode .input-label,
+    body.dark-mode .state-co2,
+    body.dark-mode .carousel-item div {
+      color: #c8e6c9;
+    }
+
+    body.dark-mode .rounded-input {
+      background-color: #37474f;
+      color: white;
+      border: 1px solid #90a4ae;
+    }
+
+    body.dark-mode .submit-btn {
+      background-color: #81c784;
+    }
+
+    body.dark-mode .submit-btn:hover {
+      background-color: #66bb6a;
+    }
+
+    body.dark-mode .back-button {
+      background-color: #ef5350;
+    }
+
+    body.dark-mode .back-button:hover {
+      background-color: #d32f2f;
+    }
+
+    body.dark-mode .carousel-item div {
+      color: #e0e0e0;
+    }
   </style>
 </head>
 <body>
+ 
   <button class="back-button" onclick="window.location.href='index.html'">← Back</button>
+  <button class="toggle-dark-mode" onclick="toggleDarkMode()">🌓 Toggle Dark Mode</button>
+
 
   <div class="app-container">
     <div class="form-card">
@@ -226,10 +297,26 @@
 
     <div class="carousel-container" id="carousel-container" style="display: none;">
       <div class="carousel" id="carousel">
-        <!-- Carousel content will appear here -->
       </div>
     </div>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+      }
+    });
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+      } else {
+        localStorage.setItem("theme", "light");
+      }
+    }
+  </script>
 
   <script src="script.js"></script>
 </body>

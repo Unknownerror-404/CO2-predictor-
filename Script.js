@@ -39,7 +39,18 @@ document.addEventListener("DOMContentLoaded", () => {
        "Lakshadweep": { image: "https://tse2.mm.bing.net/th?id=OIP.F-sELXurCRdMc4OI0h1WIgAAAA&pid=Api&P=0&h=180", co2: [0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001] },
        "Puducherry": { image: "http://www.mapsofworld.com/india/puducherry/puducherry-map.jpg", co2: [0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001] } 
     };
-     const stateDropdown = document.getElementById("state-dropdown");
+    const pollution = [
+    2243461160, 2260482790, 2303736300, 2434123800, 2573606310,
+    2541365980, 2320678660, 2528133480, 2693034100, 2903090750,
+    3050000000, 3120000000
+  ];
+
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
+  }
+
+  const stateDropdown = document.getElementById("state-dropdown");
+
   for (const state in statesData) {
     const option = document.createElement("option");
     option.value = state;
@@ -51,8 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const carousel = document.getElementById("carousel");
     const container = document.getElementById("carousel-container");
     carousel.innerHTML = "";
-
-    const pollution = [2243461160, 2260482790, 2303736300, 2434123800, 2573606310, 2541365980, 2320678660, 2528133480, 2693034100, 2903090750, 3050000000, 3120000000];
 
     const totalStates = Object.keys(statesData).length;
     const itemWidth = 180;
@@ -87,7 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
       showCarousel(selectedYear);
     } else if (!isNaN(selectedYear) && selectedState) {
       const stateData = statesData[selectedState];
-      const pollution = [2243461160, 2260482790, 2303736300, 2434123800, 2573606310, 2541365980, 2320678660, 2528133480, 2693034100, 2903090750, 3050000000, 3120000000];
       const emission = stateData.co2[selectedYear - 2014] * pollution[selectedYear - 2014];
 
       document.getElementById("state-image").src = stateData.image;
@@ -115,9 +123,15 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("year-input").addEventListener("input", () => {
     const selectedYear = parseInt(document.getElementById("year-input").value);
     const selectedState = stateDropdown.value;
+
     if (!selectedState && !isNaN(selectedYear)) {
       showCarousel(selectedYear);
     }
   });
 >>>>>>> 400f6705be715121cc483a9132174c08c5344a9a
 });
+
+function toggleDarkMode() {
+  const isDark = document.body.classList.toggle("dark-mode");
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+}

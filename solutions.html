@@ -5,25 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Solutions to Reduce CO₂</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #e0f2f1, #fff8e1);
-      color: #2c3e50;
+    :root {
+      --bg-light: linear-gradient(to right, #e0f2f1, #fff8e1);
+      --bg-dark: linear-gradient(to right, #263238, #37474f);
+      --text-light: #2c3e50;
+      --text-dark: #e0e0e0;
+      --heading-light: #00695c;
+      --heading-dark: #80cbc4;
+      --accent: #4CAF50;
+      --accent-hover: #2e7d32;
+    }
+
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+      transition: background 0.4s ease, color 0.4s ease;
+      padding: 40px 20px;
+    }
+
+    body.dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-dark);
     }
 
     .container {
       max-width: 1000px;
       margin: auto;
-      padding: 40px 20px;
+      padding: 20px;
+      animation: fadeIn 1s ease;
     }
 
     h1 {
       text-align: center;
-      font-size: 2.4rem;
-      color: #00695c;
+      font-size: 2.7rem;
+      color: var(--heading-light);
       margin-bottom: 10px;
+      animation: beat 1.5s infinite alternate;
+    }
+
+    body.dark-mode h1 {
+      color: var(--heading-dark);
+    }
+
+    @keyframes beat {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.05);
+      }
     }
 
     p.subtitle {
@@ -33,88 +71,163 @@
       color: #4e342e;
     }
 
+    body.dark-mode p.subtitle {
+      color: #d7ccc8;
+    }
+
     h2 {
-      color: #00796b;
-      margin-top: 30px;
+      color: var(--heading-light);
+      margin-top: 40px;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+      position: relative;
+    }
+
+    body.dark-mode h2 {
+      color: var(--heading-dark);
+    }
+
+    h2::before {
+      content: "✔️";
+      position: absolute;
+      left: -30px;
+      top: 0;
+      font-size: 1.2rem;
+      color: var(--accent);
     }
 
     ul {
-      margin-left: 20px;
+      margin-left: 30px;
       margin-bottom: 30px;
+      list-style-type: circle;
+      animation: fadeIn 1s ease;
     }
 
     li {
       margin-bottom: 12px;
-      font-size: 1rem;
+      font-size: 1.05rem;
+      line-height: 1.6;
     }
 
     .back-btn {
       display: block;
-      margin: 40px auto 0;
-      padding: 10px 20px;
-      background-color: #4CAF50;
+      margin: 50px auto 20px;
+      padding: 12px 24px;
+      background-color: var(--accent);
       color: white;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       font-size: 1rem;
       cursor: pointer;
       text-align: center;
       transition: 0.3s ease;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
     }
 
     .back-btn:hover {
-      background-color: #2e7d32;
+      background-color: var(--accent-hover);
+    }
+
+    .toggle-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #607d8b;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      transition: background 0.3s ease;
+    }
+
+    .toggle-btn:hover {
+      background-color: #455a64;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 <body>
+  <button class="toggle-btn" onclick="toggleDarkMode()">🌓 Toggle Dark Mode</button>
+
   <div class="container">
     <h1>🌿 Solutions to Reduce CO₂ Emissions</h1>
-    <p class="subtitle">Small actions, big impact. Here's how you can make a difference.</p>
+    <p class="subtitle">Small actions, big impact. Here's how you can make a difference for a greener tomorrow.</p>
 
     <h2>🏠 At Home</h2>
     <ul>
       <li>Switch to energy-efficient appliances and LED lights</li>
       <li>Use fans instead of air conditioning when possible</li>
-      <li>Unplug electronics when not in use</li>
-      <li>Reduce water usage by fixing leaks and using low-flow faucets</li>
-      <li>Install solar panels if possible</li>
+      <li>Unplug electronics when not in use to avoid phantom energy drain</li>
+      <li>Fix leaky faucets and install low-flow showerheads to save water and energy</li>
+      <li>Consider installing rooftop solar panels or solar water heaters</li>
     </ul>
 
     <h2>🚗 Transportation</h2>
     <ul>
-      <li>Walk or cycle for short distances</li>
-      <li>Use public transportation or carpool</li>
-      <li>Consider electric or hybrid vehicles</li>
-      <li>Maintain your vehicle for better mileage</li>
+      <li>Walk or cycle for short distances whenever feasible</li>
+      <li>Use buses, metros, and other public transport options</li>
+      <li>Carpool with friends, neighbors, or colleagues</li>
+      <li>Upgrade to electric vehicles or hybrids if possible</li>
+      <li>Drive efficiently — smooth acceleration and tire maintenance reduce emissions</li>
     </ul>
 
     <h2>🛍️ Lifestyle Choices</h2>
     <ul>
-      <li>Eat more plant-based meals and reduce meat consumption</li>
-      <li>Buy local and seasonal produce</li>
-      <li>Recycle and compost waste</li>
-      <li>Use reusable bags, bottles, and containers</li>
-      <li>Support sustainable and eco-friendly brands</li>
+      <li>Eat more plant-based meals; reduce red meat and dairy consumption</li>
+      <li>Buy local and seasonal produce to cut down on transportation emissions</li>
+      <li>Practice the 3Rs: Reduce, Reuse, Recycle — and compost where you can</li>
+      <li>Switch to reusable bags, containers, straws, and water bottles</li>
+      <li>Support businesses and products that follow sustainable and ethical practices</li>
     </ul>
 
     <h2>🏫 At School or Work</h2>
     <ul>
-      <li>Start a green club or eco-awareness campaign</li>
-      <li>Host climate talks and recycling drives</li>
-      <li>Switch to digital documentation to save paper</li>
-      <li>Use energy-efficient lighting and equipment</li>
+      <li>Start or join an environmental club or green team</li>
+      <li>Organize tree-planting days, awareness events, or recycling campaigns</li>
+      <li>Use digital files over paper — cloud over clutter</li>
+      <li>Set computers to sleep mode instead of leaving them on all day</li>
+      <li>Encourage management to audit and improve energy usage</li>
     </ul>
 
     <h2>🌍 Community & Beyond</h2>
     <ul>
-      <li>Plant trees and protect green spaces</li>
-      <li>Educate others about climate action</li>
-      <li>Support clean energy policies and local green initiatives</li>
-      <li>Participate in clean-up drives and awareness rallies</li>
+      <li>Plant native trees in your neighborhood or join afforestation drives</li>
+      <li>Share articles, videos, or your own ideas on social media to inspire others</li>
+      <li>Vote for and support leaders promoting renewable energy policies</li>
+      <li>Volunteer for cleanup events, river restorations, or climate initiatives</li>
+      <li>Educate others — one conversation can start a ripple of change</li>
     </ul>
 
     <button class="back-btn" onclick="window.location.href='Body.html'">← Back to Tracker</button>
   </div>
+
+  
+  <script>
+  
+    document.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+      }
+    });
+
+    function toggleDarkMode() {
+      const isDark = document.body.classList.toggle('dark-mode');
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    }
+  </script>
 </body>
 </html>
