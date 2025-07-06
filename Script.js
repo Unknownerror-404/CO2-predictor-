@@ -103,18 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("state-co2").textContent = `CO₂ Emissions: ${emission.toFixed(2)} Mt`;
       document.getElementById("state-output-container").style.display = "block";
       document.getElementById("carousel-container").style.display = "none";
-<<<<<<< HEAD
- }
- else if(selectedYear==2025){
-  document.getElementById("state-image").src = statesData.image;
-  document.getElementById("state-name").textContent = `${selectedState} (${selectedYear})`;
-  document.getElementById("state-co2").textContent = `CO₂ Emissions: ${Em2025} Mt`;
-  // Show the selected state's emissions data
-  document.getElementById("state-output-container").style.display = "block";
-  document.getElementById("carousel-container").style.display = "none";
- }
-}})
-=======
     } else {
       alert("Please select at least a year.");
     }
@@ -128,7 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
       showCarousel(selectedYear);
     }
   });
->>>>>>> 400f6705be715121cc483a9132174c08c5344a9a
 });
 
 function toggleDarkMode() {
