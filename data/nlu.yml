@@ -1,0 +1,377 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+    - greetings
+    - salutations
+    - how do you do
+    - what's good
+    - yo
+    - sup
+    - peace be upon you
+    - good day
+    - g'day mate
+    - how's it going
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+    - see you soon
+    - asta la vista
+    - catch you later 
+    - see ya
+    - take care
+    - that's it
+    - that's all for today
+    - see you
+    - talk to you later
+    - have a good day
+    - have a great day
+    - later
+    - peace out
+    - I'm out
+    - I'm leaving now
+    - that's all, thanks
+    - farewell
+    - cya
+    - adios
+    - au revoir
+    - till next time
+    - cheerio
+    - I am off
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - yeah
+    - yup
+    - absolutely
+    - definitely
+    - sure
+    - sounds good
+    - that's right
+    - I agree
+    - agreed
+    - totally
+    - for sure
+    - ok
+    - okay
+    - sure thing
+    - indeed
+    - that work
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+    - nope
+    - nah
+    - no thanks
+    - no thank you
+    - never
+    - absolutely not
+    - no way
+    - not at all
+    - I'd rather not
+    - I'm good
+    - I'm okay
+    - don't think so
+    - not interested
+    - not now
+    - maybe later
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+    - I'm feeling great
+    - I'm good
+    - amazing!
+    - fantastic
+    - I'm doing well
+    - couldn't be better
+    - I'm happy
+    - I'm awesome
+    - everything's perfect
+    - I feel excellent
+    - life is good
+    - I'm chill
+    - I'm really good today
+    - things are going well
+    - I'm in a good mood
+    - loving today!
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+    - I'm not feeling well
+    - not great
+    - feeling down
+    - I'm sad
+    - this sucks
+    - I'm upset
+    - not my day
+    - I'm tired
+    - I've had better days
+    - I feel terrible
+    - I'm stressed
+    - I'm not okay
+    - feeling low
+    - things are rough
+    - I feel off today
+    - not feeling it today
+    - having a hard time
+
+- intent: thankyou
+  examples: |
+    - thanks
+    - thank you
+    - thank you very much
+    - thanks a lot
+    - thanks a bunch
+    - I appreciate it
+    - many thanks
+    - cheers
+    - thanks for your help
+    - thank you so much
+    - I owe you one
+    - you're the best
+    - I really appreciate it
+    - thanks for everything
+    - thanks for your assitance
+    - mucho gracias
+    - arigato
+    - thanks for that
+    - grateful for your help
+    - that's helpful, thanks
+    - I appreciate it
+    - big thanks
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+    - are you real?
+    - who made you?
+    - what are you?
+    - is this a real person?
+    - am I talking to a robot?
+    - you're not a human, are you?
+    - are you AI?
+    - who built you?
+    - was this made by a company?
+    - are you a real person?
+    - are tou a chatbot?
+    - are you a real chatbot?
+    - are you artificially intelligent?
+    - are you a real bot?
+
+- intent: ask_co2_definition #setup a response
+  examples: |
+    - what is co2?
+    - what does CO2 stand for?
+    - explain carbon dioxide
+    - tell me about CO2
+    - what is carbon dioxide?
+    - why is co2 important?
+    - can you define co2?
+    - what do you mean by carbon dioxide?
+    - give me a definition of CO₂
+    - what exactly is CO₂?
+    - what is the meaning of CO₂?
+    - What is the definition of carbon dioxide?
+    - what does carbon dioxide mean?
+    - what is the meaning of carbon dioxide?
+    - define CO2
+    - define carbon dioxide
+    - definition of CO2?
+    - explain CO2
+
+- intent: ask_carbonfootprint_definition #setup a response
+  examples: |
+    - what is a carbon footprint?
+    - can you explain carbon footprints?
+    - how do I measure my carbon footprint?
+    - define carbon footprint
+    - what do you mean by carbon footprint?
+    - why is a carbon footprint important?
+    - what counts in a carbon footprint?
+    - tell me about individual carbon footprints
+    - how is a carbon footprint calculated?
+    - is my carbon footprint high?
+    - what is the meaning of carbon footprint?
+    - define carbon footprints
+    - carbon footprints?
+    - do my footprints leave a carbon footprint?
+    - what is the definition of carbon footprints?
+
+- intent: ask_globalwarming_definition #setup a response
+  examples: |
+    - what is global warming?
+    - define global warming
+    - can you explain global warming?
+    - what do you mean by global warming?
+    - what is the meaning of global warming?
+    - what is the definition of global warming?
+    - global warming?
+    - what causes global warming?
+    - why is global warming so important?
+    - how does global warming affect us?
+    - is global warming real?
+    - how is global warming measured?
+    - tell me about global warming
+    
+- intent: ask_globalwarming_importance #setup a response
+  examples: |
+    - why is global warming important?
+    - what is the importance of global warming?
+    - why should we care about global warming?
+    - how does global warming alter the planet?
+    - what are the effects of global warming?
+    - is global warming a concern?
+    - what are the consequences of global warming?
+    - why should we be worried about global warming?
+    - why is global warming a big deal?
+    - how does global warming impact the environment?
+    - what are the implications of global warming?
+
+- intent: ask_globalwarming_health_hazards #setup a response
+  examples: |
+    - what are the health hazards of global warming?
+    - how does global warming affect human health?
+    - can global warming cause health issues?
+    - what illnesses are linked to global warming?
+    - does global warming increase disease risk?
+    - what kind of health problems can global warming lead to?
+    - how does climate change affect our health?
+    - are there any health consequences of climate change?
+    - what health dangers come from global warming?
+    - is global warming harmful to our health?
+    - does global warming impact public health and safety?
+    - how does global warming threaten our health?
+  
+- intent: ask_globalwarming_global_impact #setup a response
+  examples: |
+    - how does global warming affect the planet?
+    - what is the global impact of climate change?
+    - how is the world changing because of global warming?
+    - what happens to the Earth due to global warming?
+    - what are the worldwide consequences of global warming?
+    - is global warming affecting other countries too?
+    - does global warming have a global effect?
+    - how does climate change impact the environment globally?
+    - what is the environmental impact of global warming?
+    - how is global warming affecting the world?
+    - are ecosystems globally affected by global warming?
+    - what is the impactof global warming on the planet?
+
+- intent: ask_globalwarming_socioeconomic_impact #setup a response
+  examples: |
+    - what is the socioeconomic impact of global warming?
+    - how does global warming affect poor communities?
+    - is climate change increasing inequality?
+    - how are jobs impacted by global warming?
+    - what are the economic effects of global warming?
+    - how does global warming influence migration?
+    - are farmers affected by climate change?
+    - how does climate change affect developing countries?
+    - will global warming make food more expensive?
+    - what are the social impacts of climate change?
+    - how does global warming affect the economy?
+    - is climate change a threat to global stability?
+
+- intent: ask_globalwarming_tipping_points #setup a response
+  examples: |
+    - what are climate tipping points?
+    - what does tipping point mean in global warming?
+    - explain tipping points in climate change
+    - are there any irreversible points in global warming?
+    - what happens if we reach a tipping point in the climate?
+    - has the earth reached any climate tipping points?
+    - what are some examples of climate tipping points?
+    - why are tipping points dangerous in climate change?
+    - how close are we to climate tipping points?
+    - what is the most critical tipping point for climate?
+
+- intent: ask_globalwarming_gas_index #setup a response
+  examples: |
+    - why is carbon dioxide considered harmful for the environment?
+    - how much methane is in the atmosphere?
+    - is nitrous oxide worse than carbon dioxide?
+    - does sulphur dioxide contribute to climate change?
+    - what is the most abundant greenhouse gas?
+    - which gas traps the most heat?
+    - what percentage of greenhouse gases is CO2?
+    - are all greenhouse gases equally dangerous?
+    - how do different greenhouse gases compare in warming effect?
+    - what is GWP in climate science?
+    - what gases have high global warming potential?
+    - is water vapor a greenhouse gas?
+    - how is the greenhouse gas index calculated?
+    - what does CO2 equivalent mean?
+    - what gases are measured in the greenhouse gas inventory?
+    - is ozone a greenhouse gas?
+    - can nitrogen be a greenhouse gas?
+    - what makes a gas a greenhouse gas?
+    - how do scientists rank greenhouse gases?
+    - what's the warming potential of each greenhouse gas?

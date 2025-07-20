@@ -1,1 +1,11 @@
-test.js
+venv/
+__pycache__/
+*.py
+
+models/
+*.db
+*.lock
+
+.vscode/
+.idea/
+.DS_Store

@@ -1,0 +1,73 @@
+version: "3.1"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: Greet the user when they say hello
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- rule: Cheer the user up if they seem unhappy
+  steps:
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+
+- rule: Cheer the user on if they seem happy
+  steps:
+  - intent: mood_great
+  - action: utter_happy
+
+- rule: Provide information on CO2 if the user asks for its definition
+  steps:
+    - intent: ask_co2_definition
+    - action: utter_co2_definition
+  
+- rule: Provide information on carbon footprints if the user asks for its definition
+  steps:
+    - intent: ask_carbonfootprint_definition
+    - action: utter_carbonfootprint_definition
+
+- rule: Provide information on global warming if user asks for its definition
+  steps:
+  - intent: ask_globalwarming_definition
+  - action: utter_globalwarming_definition
+
+- rule: Provide information on the importance of global warming if user asks for its importance
+  steps:
+  - intent: ask_globalwarming_importance
+  - action: utter_globalwarming_importance
+
+- rule: Provide information on the health hazards of global warming if the user asks for them
+  steps:
+  - intent: ask_globalwarming_health_hazards
+  - action: utter_globalwarming_health_hazards
+
+- rule: Provide information on the impact of global warming if the user asks for it
+  steps:
+  - intent: ask_globalwarming_global_impact
+  - action: utter_globalwarming_global_impact
+
+- rule: Provide information on the socioeconomical impact of global warming if the user asks for it
+  steps:
+  - intent: ask_globalwarming_socioeconomic_impact
+  - action: utter_globalwarming_socioeconomic_impact
+
+- rule: Provide information on the effects of tipping points if the user asks for them
+  steps:
+  - intent: ask_globalwarming_tipping_points
+  - action: utter_globalwarming_tipping_points
+
+- rule: Provide information on the current values of gas index if the user asks for it
+  steps:
+  - intent: ask_globalwarming_gas_index
+  - action: utter_globalwarming_gas_index

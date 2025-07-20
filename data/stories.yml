@@ -1,0 +1,62 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - intent: deny
+  - action: utter_goodbye
+
+- story: Global warming with follow-up
+  steps:
+  - intent: ask_globalwarming_definition
+  - action: utter_globalwarming_definition
+  - intent: ask_globalwarming_importance
+  - action: utter_globalwarming_importance
+  - intent: ask_globalwarming_health_hazards
+  - action: utter_globalwarming_health_hazards
+
+- story: Global warming with socioeconomical and global impact
+  steps:
+  - intent: ask_globalwarming_definition
+  - action: utter_globalwarming_definition
+  - intent: ask_globalwarming_importance
+  - action: utter_globalwarming_importance
+  - intent: ask_globalwarming_socioeconomic_impact
+  - action: utter_globalwarming_socioeconomic_impact
+  - intent: ask_globalwarming_global_impact
+  - action: utter_globalwarming_global_impact
+
+- story: CO2 definition, carbon footprints and gas index
+  steps:
+  - intent: ask_co2_definition
+  - action: utter_co2_definition
+  - intent: ask_carbonfootprint_definition
+  - action: utter_carbonfootprint_definition
+  - intent: ask_globalwarming_gas_index
+  - action: utter_globalwarming_gas_index
+
+- story: CO2 definition, carbon footprints
+  steps:
+  - intent: ask_co2_definition
+  - action: utter_co2_definition
+  - intent: ask_carbonfootprint_definition
+  - action: utter_carbonfootprint_definition
+
+- story: GLobal warming with tipping points
+  steps: 
+  - intent: ask_globalwarming_definition
+  - action: utter_globalwarming_definition
+  - intent: ask_globalwarming_tipping_points
+  - action: utter_globalwarming_tipping_points
